@@ -9,6 +9,8 @@ package crackingthecodinginterview;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 
 
 
@@ -210,11 +212,60 @@ public class CH1 {
     }
     
     //Q7
-    public void rotate_matrix(){
+    public int[][] rotate_matrix(int[][] matrix){
+        //edge case
+        if(matrix.length ==0 || matrix[0].length !=matrix.length){return matrix;}
+        int n = matrix.length;
         
+        for(int layer=0;layer<n/2;i++){
+            int first = layer;
+            int last = n-layer-1;
+            for(int i=first;i<last;i++){
+                int offset = i-first;
+                
+                int top = matrix[first][i];
+                //left->top
+                matrix[first][i] = matrix[last-offset][first];
+                
+                //bottom->left
+                matrix[last-offset][first] = matrix[last][last-offset];
+                
+                //right->bottom
+                matrix[last][last-offset] = matrix[i][last];
+                
+                //top->right
+                matrix[i][last] = top;
+            }
+        }
+        return matrix;
+    }
+    
+    //Q9-Zero Matrix
+    public void Zero_Matrix(int[][] matrix){
+        Map<Integer,Integer> hm = new HashMap<Integer,Integer>();
+        //Check which element is zero;
+        for(int i=0;i<matrix[0].length;i++){
+            for(int j=0;j<matrix.length;j++){
+                if(matrix[i][j]==0){
+                    hm.put(i,j);
+                }
+            }
+        }
+        
+        for(Integer key: hm.keySet()){
+            for(int i=0;i<matrix.length;i++){
+                matrix[key][i] =0;
+            }
+        }
+        
+        for(Integer value: hm.values()){
+            for(int j=0;j<matrix[0].length;j++){
+                matrix[j][value]=0;
+            }
+        }
     }
   
-    
+    //Extra
     public void perm1(String prefix, String s) {
         int n = s.length();
         if (n == 0) System.out.println(prefix);
@@ -222,7 +273,6 @@ public class CH1 {
             for (int i = 0; i < n; i++)
                perm1(prefix + s.charAt(i), s.substring(0, i) + s.substring(i+1, n));
         }
-
     }
     
     
