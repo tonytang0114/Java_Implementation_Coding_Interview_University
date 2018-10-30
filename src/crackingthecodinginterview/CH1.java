@@ -53,6 +53,7 @@ public class CH1 {
     public boolean CheckPermutation(String s1, String s2)
     {
         //Brute force
+        if(s1.length()!=s2.length()) return false;
         Arrays.sort(s1.toCharArray());
         Arrays.sort(s2.toCharArray());
         
@@ -75,6 +76,7 @@ public class CH1 {
     public boolean CheckPermutation_1(String s1, String s2)
     {
         //By HashMap<Character, Integer>
+        if(s1.length()!=s2.length()) return false;
         HashMap<Character, Integer> hm = new HashMap<Character, Integer>();
         for(int i=0;i<s2.length();i++)
         {
@@ -115,6 +117,7 @@ public class CH1 {
                 charArr[--i] = '%';
             }
         }
+        System.out.print(s);
     }
     
     //Q4 Palindrome Permutation
@@ -166,6 +169,7 @@ public class CH1 {
                 if(s1.charAt(i)==s1.charAt(j))
                 {
                     count++;
+                    i=j;
                 }else{
                     break;
                 }
@@ -192,12 +196,14 @@ public class CH1 {
         StringBuilder sb = new StringBuilder();
         for(int i=0;i<s1.length();i++)
         {
-            hm.put(s1.charAt(i), hm.get(s1.charAt(i))+1);
+            if(hm.containsKey(s1.charAt(i))){
+                hm.put(s1.charAt(i), hm.get(s1.charAt(i))+1);
 
-            if(i<s1.length()-1 && s1.charAt(i)!=s1.charAt(i+1)){
-                sb.append(s1.charAt(i));
-                sb.append(hm.get(s1.charAt(i)));
-                hm.put(s1.charAt(i), 0);
+                if(i<s1.length()-1 && s1.charAt(i)!=s1.charAt(i+1)){
+                    sb.append(s1.charAt(i));
+                    sb.append(hm.get(s1.charAt(i)));
+                    hm.put(s1.charAt(i), 0);
+                }
             }
         }
         sb.append(s1.charAt(s1.length()-1));
@@ -217,7 +223,7 @@ public class CH1 {
         if(matrix.length ==0 || matrix[0].length !=matrix.length){return matrix;}
         int n = matrix.length;
         
-        for(int layer=0;layer<n/2;i++){
+        for(int layer=0;layer<n/2;layer++){
             int first = layer;
             int last = n-layer-1;
             for(int i=first;i<last;i++){
@@ -241,11 +247,11 @@ public class CH1 {
     }
     
     //Q9-Zero Matrix
-    public void Zero_Matrix(int[][] matrix){
+    public int[][] Zero_Matrix(int[][] matrix){
         Map<Integer,Integer> hm = new HashMap<Integer,Integer>();
         //Check which element is zero;
-        for(int i=0;i<matrix[0].length;i++){
-            for(int j=0;j<matrix.length;j++){
+        for(int i=0;i<matrix.length;i++){
+            for(int j=0;j<matrix[0].length;j++){
                 if(matrix[i][j]==0){
                     hm.put(i,j);
                 }
@@ -263,7 +269,10 @@ public class CH1 {
                 matrix[j][value]=0;
             }
         }
+        
+        return matrix;
     }
+
   
     //Extra
     public void perm1(String prefix, String s) {
@@ -276,5 +285,18 @@ public class CH1 {
     }
     
     
+    public boolean StringRotation(String s1, String s2)
+    {
+        if(s1.length() == s2.length() && s1.length()>0){
+            String s1s1 = s1+s1;
+            return isSubString(s1s1,s2);
+        }
+        return false;
+    }
+    
+    public boolean isSubString(String s1, String s2)
+    {
+        return s1.contains(s2);
+    }
     
 }
