@@ -5,6 +5,10 @@
  */
 package crackingthecodinginterview;
 
+import CH1.CH1;
+import CH2.CH2;
+import CH2.Node;
+
 /**
  *
  * @author CITDBS
@@ -15,18 +19,24 @@ public class CrackingTheCodingInterview {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        CH1 ch1 = new CH1();
-        int[][] matrix = {{1,1,1},{1,0,1},{1,1,1}};
-        matrix = ch1.Zero_Matrix(matrix);
+        Node n = new Node(1);
+        n.next = new Node(2);
+        n.next.next = new Node(3);
+        n.next.next.next = n;
+        //n.next.next.next.next = new Node(5);
         
-       
-        for(int i=0;i<matrix.length;i++){
-            for(int j=0;j<matrix[0].length;j++){
-                System.out.print(matrix[i][j]+',');
-            }
-            System.out.println();
+
+        //CH2 ch2 = new CH2();
+        //Node c = ch2.ReturnKthToLast(n, 2);
+        //printList(c);
+        //System.out.print(n.next.next.next == n);
+    }
+    
+    public static void printList(Node n){
+        while(n!=null){
+            System.out.print(n.data+",");
+            n=n.next;
         }
-        // TODO code application logic here
     }
     
 }
