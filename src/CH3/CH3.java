@@ -27,6 +27,13 @@ public class CH3 {
     }
     
     public class StackMin{
+        public class StackNode<T>{
+            T data;
+            StackNode next;
+            public StackNode(T data){
+                this.data = data;
+            }
+        }
         
     }
 }
