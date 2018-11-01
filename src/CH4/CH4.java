@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 
 /**
@@ -191,5 +192,80 @@ public class CH4 {
     }  
     
     //Q6 Successor (In order)
+    /*
+    public TreeNode FindInOrderSuccessor(TreeNode n){
+        if(n == null) return null;
+        if(n.right!=null){
+            return leftMostChild(n.right);
+        }else{
+            TreeNode q =  n;
+            TreeNode x = q.parent;
+            
+            while(x!= null && x.left!=q){
+                q = x;
+                x = x.parent;
+            }
+            return x;
+        }
+    }
+    public TreeNode leftMostChild(TreeNode n){
+        if(n==null) { return null;}
+        while(n.left!=null){
+            n = n.left;
+        }
+        return n;
+    }
+    */
+    
+    //Q7 Build order (solve using topological sort)
+    public List<Character> BuildOrder(List<Character> projects, ArrayList<List<Character>> dependencies){
+       //Make a Graph
+       List<Character> result = new ArrayList();
+       Graph_BuildOrder g = PlotGraph(projects, dependencies);
+       boolean[] visited = new boolean[projects.size()];
+       Stack<Character> stack = new Stack<Character>();
+       for(Character ch: projects){
+           if(!visited[ch]){
+                Topological_Sort(g,ch,visited,stack);
+           }
+       }
+       
+       while(!stack.isEmpty()){
+           result.add(stack.pop());
+       }
+       return result;
+    }
+    
+    public void Topological_Sort(Graph_BuildOrder g, Character ch, boolean[] visited, Stack stack){
+        visited[ch] = true;
+        Iterator<Character> it = g.adjListMap.get(ch).iterator(); 
+        while(it.hasNext()){
+            char character = it.next();
+            if(!visited[character]){
+                Topological_Sort(g,character,visited,stack);
+            }
+        }
+        stack.push(ch);
+    }
+    
+    public Graph_BuildOrder PlotGraph(List<Character> projects, ArrayList<List<Character>> dependencies)
+    {
+        Graph_BuildOrder g = new Graph_BuildOrder(projects);
+        Iterator<List<Character>> listIterator = dependencies.iterator();
+        while(listIterator.hasNext()){
+            List<Character> temp = listIterator.next();
+            g.addEdge(temp.get(0), temp.get(1));
+        }
+        
+        return g;
+    }
+    //Q4.8 First common ancestor
+    
+    //Q4.9 BST Sequences
+    public void BST_Sequences(TreeNode root){
+        
+    }
+    
+    
     
 }
