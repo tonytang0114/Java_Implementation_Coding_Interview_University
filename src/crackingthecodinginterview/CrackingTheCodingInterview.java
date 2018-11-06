@@ -8,6 +8,7 @@ package crackingthecodinginterview;
 import CH1.CH1;
 import CH2.CH2;
 import CH2.Node;
+import CH5.CH5;
 
 /**
  *
@@ -30,6 +31,9 @@ public class CrackingTheCodingInterview {
         //Node c = ch2.ReturnKthToLast(n, 2);
         //printList(c);
         //System.out.print(n.next.next.next == n);
+        CH5 ch5 = new CH5();
+        String s = ch5.BinaryToString(0.72);
+        System.out.print(s);
     }
     
     public static void printList(Node n){
