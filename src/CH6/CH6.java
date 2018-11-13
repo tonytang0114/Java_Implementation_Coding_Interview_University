@@ -32,4 +32,27 @@ public class CH6 {
         Anti-clockwise
         Collision
     */
+    
+    /*
+    6.5 Jugs of water
+    remaining 2 jugs on 5 quarts of water
+    */
+    
+    
+    /*
+    6.6 Blue eyes
+    */
+    
+    /*
+    6.7 Apocalypse
+    */
+    
+    /*
+    6.8 Egg Drop
+    */
+    
+    /*
+    100 lockers
+    perfect square
+    */
 }

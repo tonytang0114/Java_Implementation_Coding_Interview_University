@@ -218,7 +218,7 @@ public class CH2 {
         }
         
         while(current !=null && current1!=null){
-            if(current.data == current1.data){
+            if(current == current1){
                 return true;
             }
             current=current.next;
@@ -233,7 +233,7 @@ public class CH2 {
         //foreach node -> tranverse to the right
         Node cur = n1;
         while(n1 != null){
-            if(ReturnLastNodeofLinkedList(cur).next == n1){
+            if(ReturnLastNodeofLinkedList(cur,n1)){
                 return n1.data;
             }
             n1=n1.next;
@@ -241,11 +241,14 @@ public class CH2 {
         return -1;
     }
     
-    public Node ReturnLastNodeofLinkedList(Node n1){
+    public boolean ReturnLastNodeofLinkedList(Node n1,Node n2){
         while(n1.next!=null){
+            if(n1==n2){
+                return true;
+            }
             n1 = n1.next;
         }
-        return n1;
+        return false;
     }
     
     public int Loop_detection_1(Node n1){

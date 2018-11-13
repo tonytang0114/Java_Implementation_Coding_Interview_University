@@ -18,7 +18,17 @@ public class Node{
     public Node(int data) {
         this.data = data;
     }
+    
 }
+
+/*
+struct node *slow_ptr, *fast_ptr;
+ 
+while(!slow_ptr && !fast_ptr && fast_ptr->next != NULL) {
+        slow_ptr = slow_ptr->next;  // moves one node ahead at a time
+        fast_ptr = fast_ptr->next->next;  // moves two nodes ahead at a time
+}
+*/
 
 
 
